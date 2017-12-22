@@ -1,0 +1,13 @@
+<%= form_for @item do |f| %>
+  <p>
+  	<%= f.label "Name" %> <br>
+  	<%= f.text_field :name %>
+  </p>
+   <p>
+  	<%= f.label "Strating Price" %> <br>
+  	<%= f.number_field :price, placeholder: 'RM' %>
+  </p>
+  <p>
+  	<%= f.submit "Auction" %>
+  </p>
+<% end %>

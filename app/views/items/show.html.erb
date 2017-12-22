@@ -1,0 +1,4 @@
+<h3> <%= @item.name %> </h3> 
+<p>Starting price: <%= @item.price %></p> 
+<%= link_to 'Delete', item_path(@item), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
+<%= link_to 'Back', items_path %>

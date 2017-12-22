@@ -1,0 +1,9 @@
+<% if @items.any? %>
+	<% @items.each do |item| %>
+	<%= link_to "#{item.name}", item_path(item) %> <br>
+	<p>Starting price: <%= item.price %> </p> 
+	<hr>
+	<% end %>
+<% end %>
+
+<%= link_to 'List A New Auction', new_item_path %>
