@@ -3,9 +3,13 @@
   	<%= f.label "Name" %> <br>
   	<%= f.text_field :name %>
   </p>
-   <p>
+  <p>
   	<%= f.label "Strating Price" %> <br>
   	<%= f.number_field :price, placeholder: 'RM' %>
+  </p>
+  <p>
+    <%= f.label "Image" %>
+    <%= f.file_field :image %>
   </p>
   <p>
   	<%= f.submit "Auction" %>
