@@ -13,11 +13,20 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if @user.save
-			session[:user_id] = @user.id
-			redirect_to items_path
-		else
-			render 'new'
+		flash[:error] = []
+		flash[:error] << 'Name is empty' if user_params[:name].empty?
+		flash[:error] << 'Absent or Invalid Email' if  (/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.match(user_params[:email]) == nil)
+		flash[:error] << 'Password is empty' if user_params[:password].empty?
+		if (/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.match(user_params[:email]) != nil) 
+			if @user.save
+				session[:user_id] = @user.id
+				redirect_to items_path
+			else
+				render 'edit'
+			end
+		else 
+			byebug
+			redirect_to new_user_path
 		end
 	end
 
@@ -43,6 +52,6 @@ class UsersController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(:name, :password)
+		params.require(:user).permit(:name, :email, :password)
 	end
 end
