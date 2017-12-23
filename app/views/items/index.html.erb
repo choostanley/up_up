@@ -1,3 +1,9 @@
+
+<% if session[:user_id].defined? %>
+<%= link_to "#{User.find(session[:user_id]).name}", User.find(session[:user_id]) %>
+<br>
+<% end %>
+
 <% if @items.any? %>
 	<% @items.each do |item| %>
 	<%= image_tag item.image.to_s, size: "80" %> <br>
@@ -7,4 +13,5 @@
 	<% end %>
 <% end %>
 
-<%= link_to 'List A New Auction', new_item_path %>
+<%= link_to 'List A New Auction', new_item_path %> <br>
+<%= link_to 'Sign_up', new_user_path %>

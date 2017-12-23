@@ -1,0 +1,6 @@
+
+<h3> <%= @user.name %> </h3> 
+<p>Access level: <%= @user.access_level %></p> 
+<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Delete Account', user_path(@user), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
+<%= link_to 'Back to Auction Page', items_path %>
