@@ -1,5 +1,6 @@
-<%= image_tag @item.image.to_s %>
+<%= image_tag @item.image.to_s, size: "80" %>
 <h3> <%= @item.name %> </h3> 
 <p>Starting price: <%= @item.price %></p> 
+<%= link_to 'Edit', edit_item_path(@item) %>
 <%= link_to 'Delete', item_path(@item), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
 <%= link_to 'Back', items_path %>
