@@ -1,0 +1,21 @@
+<%= form_for @item do |f| %>
+  <p>
+  	<%= f.label "Name" %> <br>
+  	<%= f.text_field :name %>
+  </p>
+  <p>
+  	<%= f.label "Strating Price" %> <br>
+  	<%= f.number_field :price, placeholder: 'RM' %>
+  </p>
+  <p>
+    <%= f.label "Description" %> <br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label "Image" %>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+  	<%= f.submit "Auction" %>
+  </p>
+<% end %>
