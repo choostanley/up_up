@@ -39,6 +39,13 @@ class ItemsController < ApplicationController
 		redirect_to items_path
 	end
 
+	def add
+		@item = Item.find(params[:'/comment'][:item_id])
+		@item.counter << params[:'/comment'][:counter]
+		@item.save
+		redirect_to @item
+	end
+
 	private
 	def item_params
 		params.require(:item).permit(:name, :price, :image, :description)

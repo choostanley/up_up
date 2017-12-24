@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :sessions
   get 'logout', to: 'sessions#destroy', as: 'logout'
   post "/sessions/new", to: "sessions#create", as: "signin"
-  resources :comments
+  post '/comment', to: 'items#add', as: 'hello'
 end

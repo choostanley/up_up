@@ -5,3 +5,15 @@
 <%= link_to 'Edit', edit_item_path(@item) %>
 <%= link_to 'Delete', item_path(@item), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
 <%= link_to 'Back', items_path %>
+
+<%= form_for hello_path, :url => '/comment' do |f| %>
+
+  <p>
+  	<%= f.label "Bid" %> <br>
+  	<%= f.text_field :counter %>
+  </p>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <p>
+    <%= f.submit 'Counter Offer Price' %>
+  </p>
+<% end %>
