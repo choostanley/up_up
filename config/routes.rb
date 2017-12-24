@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items
   resources :users
+  resources :sessions
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  post "/sessions/new", to: "sessions#create", as: "signin"
+  resources :comments
 end

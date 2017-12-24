@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 				render 'edit'
 			end
 		else 
-			byebug
 			redirect_to new_user_path
 		end
 	end

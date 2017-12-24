@@ -1,6 +1,10 @@
+<br>
+<%= link_to 'List A New Auction', new_item_path %> 
+<br>
 
 <% if session[:user_id] != nil %>
 <%= link_to "#{User.find(session[:user_id]).name}", User.find(session[:user_id]) %>
+<br>
 <br>
 <% end %>
 
@@ -12,6 +16,3 @@
 	<hr>
 	<% end %>
 <% end %>
-
-<%= link_to 'List A New Auction', new_item_path %> <br>
-<%= link_to 'Sign_up', new_user_path %>

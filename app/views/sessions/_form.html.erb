@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for sessions_path do |f| %>
 
   <p>
   	<%= f.label "Name" %> <br>
@@ -13,10 +13,6 @@
     <%= f.password_field :password %>
   </p>
   <p>
-  <% if session[:user_id == nil] %>
-  	<%= f.submit 'Sign Up' %>
-  <% else %>
-    <%= f.submit 'Edit Profile' %>
-  <% end %>
+    <%= f.submit 'Sign In' %>
   </p>
 <% end %>
