@@ -2,13 +2,7 @@
 <%= link_to 'List A New Auction', new_item_path %> 
 <br>
 
-<% if session[:user_id] != nil %>
-<%= link_to "#{User.find(session[:user_id]).name}", User.find(session[:user_id]) %>
-<br>
-<br>
-<% end %>
-
-<% if @items.any? %>
+<% if @items.present? %>
 	<% @items.each do |item| %>
 	<%= image_tag item.image.to_s, size: "80" %> <br>
 	<%= link_to "#{item.name}", item_path(item) %> <br>

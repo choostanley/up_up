@@ -4,3 +4,14 @@
 <%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'Delete Account', user_path(@user), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
 <%= link_to 'Back to Auction Page', items_path %>
+<br>
+
+<p>Auction items by User:</p>
+<% if @user.items.present? %>
+	<% @user.items.each do |item| %>
+	<%= image_tag item.image.to_s, size: "80" %> <br>
+	<%= link_to "#{item.name}", item_path(item) %> <br>
+	<p>Starting price: <%= item.price %> </p> 
+	<hr>
+	<% end %>
+<% end %>
