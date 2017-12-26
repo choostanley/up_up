@@ -1,7 +1,29 @@
+<br>
+<p>By: <%= link_to "#{User.find(@item.user_id).name}", user_path(User.find(@item.user_id)) %> </p>
 <%= image_tag @item.image.to_s, size: "80" %>
 <h3> <%= @item.name %> </h3> 
 <p>Starting price: <%= @item.price %></p> 
 <p>Description: <%= simple_format(@item.description) %></p>
+<% if @item.counter.present? %>
+<p>Counter Offers: </p>
+<% @item.counter.each do |x|%>
+<% @user = User.find(x[0]) %>
+<p><%= link_to "#{@user.name}", user_path(@user) %> <%= x[2..-1] %> </p>
+<% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_item_path(@item) %>
 <%= link_to 'Delete', item_path(@item), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
 <%= link_to 'Back', items_path %>
+
+<%= form_for hello_path, :url => '/comment' do |f| %>
+  <p>
+  	<%= f.label "Bid" %> <br>
+  	<%= f.text_field :counter %>
+  </p>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <%= f.hidden_field :user_id, :value => session[:user_id] %>
+  <p>
+    <%= f.submit 'Counter Offer Price' %>
+  </p>
+<% end %>

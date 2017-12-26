@@ -9,6 +9,24 @@
   </head>
 
   <body>
+
+    <% if session[:user_id] != nil %>
+    <p> Profile: <%= link_to "#{User.find(session[:user_id]).name}", User.find(session[:user_id]) %> </p>
+    <% end %>
+  	
+    <% if session[:user_id] == nil %>
+    <%= link_to 'Sign_up', new_user_path %>
+    <%= link_to 'Sign_in', new_session_path %>
+    <br>
+    <% else %>
+    <%= link_to "Log Out", logout_path %>
+    <br>
+    <% end %>
+
+    <%if flash[:error].present? %>     
+      <p style="color:orange; text-transform: uppercase; font-size: 14px;"><%= flash[:error] %></p>
+    <%end%>
+
     <%= yield %>
   </body>
 </html>

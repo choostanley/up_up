@@ -1,4 +1,8 @@
-<% if @items.any? %>
+<br>
+<%= link_to 'List A New Auction', new_item_path %> 
+<br>
+
+<% if @items.present? %>
 	<% @items.each do |item| %>
 	<%= image_tag item.image.to_s, size: "80" %> <br>
 	<%= link_to "#{item.name}", item_path(item) %> <br>
@@ -6,5 +10,3 @@
 	<hr>
 	<% end %>
 <% end %>
-
-<%= link_to 'List A New Auction', new_item_path %>
