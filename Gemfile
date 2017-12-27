@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'cloudinary'
+gem 'pg_search'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

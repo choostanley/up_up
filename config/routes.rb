@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   post "/sessions/new", to: "sessions#create", as: "signin"
   post '/comment', to: 'items#add', as: 'hello'
+  post '/find', to: 'items#search', as: 'byebye'
+  post '/justin', to: 'items#users', as: 'justin'
 end

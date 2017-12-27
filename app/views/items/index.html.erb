@@ -2,6 +2,16 @@
 <%= link_to 'List A New Auction', new_item_path %> 
 <br>
 
+<%= form_for byebye_path, :url => '/find' do |f| %>
+  <p>
+  	<%= f.label "Name" %> <br>
+  	<%= f.text_field :name %>
+  </p>
+   <p>
+  	<%= f.submit "Find" %>
+  </p>
+<% end %>
+
 <% if @items.present? %>
 	<% @items.each do |item| %>
 	<%= image_tag item.image.to_s, size: "80" %> <br>

@@ -57,6 +57,17 @@ class ItemsController < ApplicationController
 		redirect_to @item
 	end
 
+	def search
+		@items = Item.search_by_name(params[:'/find'][:name])
+		render template: "items/index"
+	end
+
+	def users
+		p params[:user_id]
+		render plain: {save: Item.find(15), users: User.all}.to_json
+		# render plain: {save: true}.to_json
+	end
+
 	private
 	def item_params
 		params.require(:item).permit(:name, :price, :image, :description)

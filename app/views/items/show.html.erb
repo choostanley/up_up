@@ -4,6 +4,7 @@
 <h3> <%= @item.name %> </h3> 
 <p>Starting price: <%= @item.price %></p> 
 <p>Description: <%= simple_format(@item.description) %></p>
+<div id='aiman'>
 <% if @item.counter.present? %>
 <p>Counter Offers: </p>
 <% @item.counter.each do |x|%>
@@ -11,6 +12,7 @@
 <p><%= link_to "#{@user.name}", user_path(@user) %> <%= x[2..-1] %> </p>
 <% end %>
 <% end %>
+</div>
 
 <%= link_to 'Edit', edit_item_path(@item) %>
 <%= link_to 'Delete', item_path(@item), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
@@ -27,3 +29,35 @@
     <%= f.submit 'Counter Offer Price' %>
   </p>
 <% end %>
+
+<script type="text/javascript">
+
+	$(document).ready(sendUser());
+
+	function say () {
+		console.log('hi');
+	}
+
+	var x = "abc"
+
+	function sendUser () {
+		console.log('peace');
+
+		$.ajax({
+			url: '/justin', //<%= justin_path %>
+			method:'post', 
+			data: {user_id: x},
+			dataType: 'json',
+			success: function(data){
+				console.log(data.save.counter);
+				var html = '';
+				data.save.counter.map((element, index) => {
+				 
+			});
+				console.log(html);
+				//$('#aiman').after()
+			}
+		})
+		setTimeout(sendUser,5000);
+	}
+</script>
