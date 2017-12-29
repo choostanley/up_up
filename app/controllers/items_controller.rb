@@ -57,6 +57,31 @@ class ItemsController < ApplicationController
 		redirect_to @item
 	end
 
+	def search
+		@items = Item.search_by_name(params[:'/find'][:name])
+		render template: "items/index"
+	end
+
+	def users
+
+		@live = Live.new(user_id: params[:user_id], item_id: params[:item_id])
+		@live.save
+		Live.all.each {|x| x. delete if ((Time.now - x.created_at) > 5)}
+		@live_user = Live.where(item_id: params[:item_id]).count
+
+		@user_id_array =[]
+		@user_array = []	
+		@bid_array = []
+		@item = Item.find(params[:item_id])
+		@item.counter.each {|x| 
+			@user_id_array << x[0]
+			@user_array << User.find(x[0]).name
+			@bid_array << x[2..-1]
+		}
+		render plain: {save: @item, live: @live_user, user: @user_array, bid: @bid_array, id: @user_id_array}.to_json
+		# render plain: {save: true}.to_json
+	end
+
 	private
 	def item_params
 		params.require(:item).permit(:name, :price, :image, :description)

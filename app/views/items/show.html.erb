@@ -4,6 +4,7 @@
 <h3> <%= @item.name %> </h3> 
 <p>Starting price: <%= @item.price %></p> 
 <p>Description: <%= simple_format(@item.description) %></p>
+<div id='aiman'>
 <% if @item.counter.present? %>
 <p>Counter Offers: </p>
 <% @item.counter.each do |x|%>
@@ -11,6 +12,7 @@
 <p><%= link_to "#{@user.name}", user_path(@user) %> <%= x[2..-1] %> </p>
 <% end %>
 <% end %>
+</div>
 
 <%= link_to 'Edit', edit_item_path(@item) %>
 <%= link_to 'Delete', item_path(@item), method: :delete, data: {confirm: 'Sure bo?'} %> <br>
@@ -27,3 +29,45 @@
     <%= f.submit 'Counter Offer Price' %>
   </p>
 <% end %>
+
+<script type="text/javascript">
+
+	$(document).ready(sendUser());
+
+	function say () {
+		console.log('hi');
+	}
+
+	var x = <%= session[:user_id] %> ;
+	var y = <%= @item.id %>
+
+	function sendUser () {
+		console.log('peace');
+
+		$.ajax({
+			url: '/justin', //<%= justin_path %>
+			method:'post', 
+			data: {user_id: x, item_id: y},
+			dataType: 'json',
+			success: function(data){
+				console.log(data.save.counter);
+				console.log(data.user);
+				console.log(data.bid);
+				console.log(data.live);
+				console.log(data.id);
+				var x = document.getElementById('aiman')
+				x.innerHTML = '<p> Live User on current auction page:' + data.live +'</p>';
+
+				// var html = '';
+
+				for (i = 0; i < data.user.length; i++) {				
+				x.innerHTML = x.innerHTML + '<p>' 
+				+ data.user[i]
+				+ ' ' + data.bid[i] + '</p>';	    
+					}
+				// console.log(html);				
+			}
+		})
+		setTimeout(sendUser,5000);
+	}
+</script>
